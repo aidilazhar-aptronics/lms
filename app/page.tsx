@@ -33,7 +33,7 @@ export default function App() {
 
   return (
     <main>
-      <h1>My todos</h1>
+      <h1>LMS</h1>
       <button onClick={createTodo}>+ new</button>
       <ul>
         {todos.map((todo) => (
@@ -41,11 +41,7 @@ export default function App() {
         ))}
       </ul>
       <div>
-        🥳 App successfully hosted. Try creating a new todo.
-        <br />
-        <a href="https://docs.amplify.aws/nextjs/start/quickstart/nextjs-app-router-client-components/">
-          Review next steps of this tutorial.
-        </a>
+  Aptronics LMS ver. 0.0.1
       </div>
     </main>
   );
