@@ -1,12 +1,17 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View, Button, Alert } from 'react-native';
 
 export default function App() {
+  const handlePress = (btn) => {
+    Alert.alert(`You pressed Button ${btn}`);
+  };
+
   return (
     <View style={styles.container}>
-      <Text>Hello Expo + AWS Amplify + Next.js!</Text>
-      <StatusBar style="auto" />
+      
+      <Button title="Student" onPress={() => handlePress(1)} />
+      <Button title="Instructor" onPress={() => handlePress(2)} />
+      <Button title="Administrator" onPress={() => handlePress(3)} />
     </View>
   );
 }
@@ -14,9 +19,9 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
     justifyContent: 'center',
+    alignItems: 'center',
+    gap: 20, // spacing between buttons (React Native 0.71+)
+    backgroundColor: '#fff',
   },
 });
-
