@@ -3,24 +3,21 @@ backend:
   phases:
     build:
       commands:
-        # Use Yarn v4 instead of npm
+        # ✅ Ensure Yarn 4 is used
         - corepack enable
         - yarn set version stable
         - yarn install --immutable
+        - rm -f package-lock.json
         - npx ampx pipeline-deploy --branch $AWS_BRANCH --app-id $AWS_APP_ID
 
 frontend:
   phases:
     build:
       commands:
-        # For Next.js web build
         - yarn build
-        # If you need Expo Web (uncomment below instead)
-        # - yarn expo export
 
   artifacts:
-    baseDirectory: .next  # For Next.js
-    # baseDirectory: dist  # <-- Use this if Expo export instead of Next.js
+    baseDirectory: .next 
     files:
       - '**/*'
 
