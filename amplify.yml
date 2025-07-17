@@ -3,19 +3,30 @@ backend:
   phases:
     build:
       commands:
-        - npm ci --cache .npm --prefer-offline
+        # Use Yarn v4 instead of npm
+        - corepack enable
+        - yarn set version stable
+        - yarn install --immutable
         - npx ampx pipeline-deploy --branch $AWS_BRANCH --app-id $AWS_APP_ID
+
 frontend:
   phases:
     build:
       commands:
-        - npm run build
+        # For Next.js web build
+        - yarn build
+        # If you need Expo Web (uncomment below instead)
+        # - yarn expo export
+
   artifacts:
-    baseDirectory: .next
+    baseDirectory: .next  # For Next.js
+    # baseDirectory: dist  # <-- Use this if Expo export instead of Next.js
     files:
       - '**/*'
+
   cache:
     paths:
+      - .yarn/cache/**/*
+      - .yarn/install-state.gz
       - .next/cache/**/*
-      - .npm/**/*
       - node_modules/**/*
